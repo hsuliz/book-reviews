@@ -6,22 +6,26 @@ import dev.hsuliz.bookreviews.util.exception.BookNotFoundException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.InjectMocks
+import org.mockito.Mock
 import org.mockito.Mockito.anyString
 import org.mockito.Mockito.`when`
+import org.mockito.junit.jupiter.MockitoExtension
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 
+@ExtendWith(MockitoExtension::class)
 public class BookServiceTest {
+    @Mock
+    lateinit var mockBookRepository: BookRepository
 
-    private val mockBookRepository = Mockito.mock(BookRepository::class.java)
-    private val bookService = BookService(mockBookRepository)
-
+    @InjectMocks
+    lateinit var bookService: BookService
 
     @Nested
-    inner class FindByIdTestClass {
-
+    inner class FindByIdTest {
         @Test
         fun `should find and return given book`() {
             //given
@@ -47,8 +51,7 @@ public class BookServiceTest {
     }
 
     @Nested
-    inner class FindAllBooksTestClass {
-
+    inner class FindAllBooksTest {
         @Test
         fun `should return list of books when invoked`() {
             //given
@@ -78,5 +81,4 @@ public class BookServiceTest {
                 .verifyComplete()
         }
     }
-
 }

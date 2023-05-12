@@ -14,7 +14,6 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 @Slf4j
 public class BookService {
-
     private final BookRepository bookRepository;
 
     public Mono<Book> findBookById(String id) {

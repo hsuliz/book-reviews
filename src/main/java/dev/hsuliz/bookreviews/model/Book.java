@@ -11,13 +11,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Data
 public class Book {
-
     @Id
     private String id;
     private String author;
     private String title;
     private String isbn;
-
     public Book(String author, String title, String isbn) {
         this.author = author;
         this.title = title;

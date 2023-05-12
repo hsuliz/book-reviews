@@ -18,7 +18,6 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 @Slf4j
 public class BookController {
-
     private final BookService bookService;
 
     @GetMapping("/{id}")
