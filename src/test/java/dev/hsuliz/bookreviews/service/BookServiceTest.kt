@@ -2,7 +2,6 @@ package dev.hsuliz.bookreviews.service
 
 import dev.hsuliz.bookreviews.model.Book
 import dev.hsuliz.bookreviews.repository.BookRepository
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
@@ -22,7 +21,7 @@ public class BookServiceTest {
         `when`(mockBookRepository.findById(expected.id)).thenReturn(Mono.just(expected))
         //then
         StepVerifier
-            .create(bookService.findById(expected.id))
+            .create(bookService.findBookById(expected.id))
             .expectNext(expected)
             .expectComplete()
             .verify()
