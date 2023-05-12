@@ -6,6 +6,7 @@ import dev.hsuliz.bookreviews.util.exception.BookNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
@@ -20,5 +21,9 @@ public class BookService {
         return bookRepository
                 .findById(id)
                 .switchIfEmpty(Mono.error(new BookNotFoundException(id)));
+    }
+
+    public Flux<Book> findAllBooks() {
+        return bookRepository.findAll();
     }
 }
