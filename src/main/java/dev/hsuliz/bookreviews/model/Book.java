@@ -13,12 +13,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Book {
     @Id
     private String id;
+    private String externalId;
     private String author;
     private String title;
-    private String isbn;
-    public Book(String author, String title, String isbn) {
+    public Book(String author, String title, String externalId) {
         this.author = author;
         this.title = title;
-        this.isbn = isbn;
+        this.externalId = externalId;
     }
 }

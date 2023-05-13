@@ -6,10 +6,7 @@ import dev.hsuliz.bookreviews.util.exception.BookNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -30,5 +27,10 @@ public class BookController {
     @GetMapping
     public Flux<Book> findAllBooks() {
         return bookService.findAllBooks();
+    }
+
+    @PostMapping("/{id}")
+    public Mono<Book> createBookFromAPI(@PathVariable String id) {
+        return bookService.createBookFromAPI(id);
     }
 }
