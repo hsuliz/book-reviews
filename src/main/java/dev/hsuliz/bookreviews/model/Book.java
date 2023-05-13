@@ -12,13 +12,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Data
 public class Book {
+
     @Id
     private String id;
+
     private String externalId;
+
     private String title;
+
     private String author;
+
     private String year;
+
     private String image;
+
     public Book(String externalId, String title, String author, String year, String image) {
         this.externalId = externalId;
         this.title = title;

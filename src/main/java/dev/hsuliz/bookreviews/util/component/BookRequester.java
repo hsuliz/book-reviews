@@ -1,4 +1,4 @@
-package dev.hsuliz.bookreviews.component;
+package dev.hsuliz.bookreviews.util.component;
 
 import dev.hsuliz.bookreviews.model.Book;
 import dev.hsuliz.bookreviews.util.dto.BookResponse;
@@ -13,7 +13,9 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class BookRequester {
+
     private final BookMapper bookMapper;
+
     private final WebClient findBookWebClient;
 
     public Mono<Book> findById(String id) {
