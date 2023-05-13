@@ -37,9 +37,11 @@ public class BookController {
     }
 
     @PostMapping("/{id}")
-    public Mono<BookDTO> createBookFromAPI(@PathVariable String id) {
+    public Mono<ResponseEntity<BookDTO>> createBookFromAPI(@PathVariable String id) {
         return bookService
                 .createBookFromAPI(id)
-                .map(bookMapper::modelToDTO);
+                .map(bookMapper::modelToDTO)
+                .map(ResponseEntity::ok)
+                .onErrorReturn(BookNotFoundException.class, ResponseEntity.notFound().build());
     }
 }
