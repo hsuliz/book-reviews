@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookMapper implements Mapper<BookResponse, Book, BookDTO> {
     @Override
-    public Book reponseToModel(BookResponse bookResponse) {
+    public Book responseToModel(BookResponse bookResponse) {
         return new Book(
                 bookResponse.id(),
                 bookResponse.title(),

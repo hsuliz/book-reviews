@@ -18,20 +18,19 @@ import reactor.test.StepVerifier
 
 @ExtendWith(MockitoExtension::class)
 public class BookServiceTest {
-    @Mock
-    lateinit var mockBookRepository: BookRepository
-
     @InjectMocks
     lateinit var bookService: BookService
+    @Mock
+    lateinit var mockBookRepository: BookRepository
+    @Mock
+    lateinit var mockBookRequestService: BookRequestService
 
     @Nested
     inner class FindByIdTest {
         @Test
         fun `should find and return given book`() {
-            //given
             val expected = Book("1", "Dave", "How to", "228", "12", "123")
             `when`(mockBookRepository.findById(expected.id)).thenReturn(Mono.just(expected))
-            //then, when
             StepVerifier
                 .create(bookService.findBookById(expected.id))
                 .expectNext(expected)
@@ -41,7 +40,6 @@ public class BookServiceTest {
 
         @Test
         fun `shouldn throw exception when book not found`() {
-            //then, when
             `when`(mockBookRepository.findById(anyString())).thenReturn(Mono.empty())
             StepVerifier
                 .create(bookService.findBookById("7777"))
@@ -54,14 +52,12 @@ public class BookServiceTest {
     inner class FindAllBooksTest {
         @Test
         fun `should return list of books when invoked`() {
-            //given
             val givenBooks = listOf(
                 Book("1", "Dave", "How to", "228", "123", "123"),
                 Book("2", "Daniel", "Why to", "9234", "123", "123"),
                 Book("3", "Danny", "Should to", "6531", "123", "123")
             )
             `when`(mockBookRepository.findAll()).thenReturn(Flux.fromIterable(givenBooks))
-            //then, when
             StepVerifier
                 .create(bookService.findAllBooks())
                 .also { verifier ->
@@ -72,10 +68,8 @@ public class BookServiceTest {
 
         @Test
         fun `should return empty list when invoked`() {
-            //given
             val givenEmptyBookList = listOf<Book>()
             `when`(mockBookRepository.findAll()).thenReturn(Flux.fromIterable(givenEmptyBookList))
-            //then, when
             StepVerifier
                 .create(bookService.findAllBooks())
                 .verifyComplete()

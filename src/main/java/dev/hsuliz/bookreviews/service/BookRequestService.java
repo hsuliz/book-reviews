@@ -14,22 +14,18 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class BookRequestService {
     private final BookMapper bookMapper;
-
-    private final WebClient webClient = WebClient
-            .builder()
-            .baseUrl("https://www.dbooks.org/api/book")
-            .build();
+    private final WebClient findBookWebClient;
 
     public Mono<Book> findById(String id) {
-        return webClient
+        return findBookWebClient
                 .get()
-                .uri("/" + id)
+                .uri("/{id}", id)
                 .retrieve()
                 .onStatus(
                         HttpStatus.NOT_FOUND::equals,
                         response -> response.bodyToMono(String.class).map(BookNotFoundException::new)
                 )
                 .bodyToMono(BookResponse.class)
-                .map(bookMapper::reponseToModel);
+                .map(bookMapper::responseToModel);
     }
 }
