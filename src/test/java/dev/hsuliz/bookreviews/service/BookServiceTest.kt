@@ -29,7 +29,7 @@ public class BookServiceTest {
         @Test
         fun `should find and return given book`() {
             //given
-            val expected = Book("1", "Dave", "How to", "228")
+            val expected = Book("1", "Dave", "How to", "228", "12", "123")
             `when`(mockBookRepository.findById(expected.id)).thenReturn(Mono.just(expected))
             //then, when
             StepVerifier
@@ -56,9 +56,9 @@ public class BookServiceTest {
         fun `should return list of books when invoked`() {
             //given
             val givenBooks = listOf(
-                Book("1", "Dave", "How to", "228"),
-                Book("2", "Daniel", "Why to", "9234"),
-                Book("3", "Danny", "Should to", "6531")
+                Book("1", "Dave", "How to", "228", "123", "123"),
+                Book("2", "Daniel", "Why to", "9234", "123", "123"),
+                Book("3", "Danny", "Should to", "6531", "123", "123")
             )
             `when`(mockBookRepository.findAll()).thenReturn(Flux.fromIterable(givenBooks))
             //then, when

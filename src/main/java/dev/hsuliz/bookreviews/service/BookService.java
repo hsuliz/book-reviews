@@ -2,7 +2,6 @@ package dev.hsuliz.bookreviews.service;
 
 import dev.hsuliz.bookreviews.model.Book;
 import dev.hsuliz.bookreviews.repository.BookRepository;
-import dev.hsuliz.bookreviews.util.dto.MessageResponse;
 import dev.hsuliz.bookreviews.util.exception.BookNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +29,7 @@ public class BookService {
 
     public Mono<Book> createBookFromAPI(String id) {
         return bookRequestService
-                .findBookById(id)
+                .findById(id)
                 .flatMap(bookRepository::save);
     }
 }
