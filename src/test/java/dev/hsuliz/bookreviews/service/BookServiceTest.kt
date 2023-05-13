@@ -1,5 +1,6 @@
 package dev.hsuliz.bookreviews.service
 
+import dev.hsuliz.bookreviews.component.BookRequester
 import dev.hsuliz.bookreviews.model.Book
 import dev.hsuliz.bookreviews.repository.BookRepository
 import dev.hsuliz.bookreviews.util.exception.BookNotFoundException
@@ -23,7 +24,7 @@ public class BookServiceTest {
     @Mock
     lateinit var mockBookRepository: BookRepository
     @Mock
-    lateinit var mockBookRequestService: BookRequestService
+    lateinit var mockBookRequester: BookRequester
 
     @Nested
     inner class FindByIdTest {
