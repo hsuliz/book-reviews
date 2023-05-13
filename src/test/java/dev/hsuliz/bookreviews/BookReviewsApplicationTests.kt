@@ -1,12 +1,11 @@
-package dev.hsuliz.bookreviews;
+package dev.hsuliz.bookreviews
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test
+import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class BookReviewsApplicationTests {
-
+internal class BookReviewsApplicationTests {
     @Test
-    void contextLoads() {
+    fun contextLoads() {
     }
 }
