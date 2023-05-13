@@ -13,7 +13,6 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class BookRequester {
-
     private final BookMapper bookMapper;
 
     private final WebClient findBookWebClient;

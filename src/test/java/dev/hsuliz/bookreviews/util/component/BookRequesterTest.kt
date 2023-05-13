@@ -16,6 +16,9 @@ public class BookRequesterTest {
     @Mock
     lateinit var webClient: WebClient
 
+    @Mock
+    lateinit var
+
     @Test
     fun `sas`() {
 

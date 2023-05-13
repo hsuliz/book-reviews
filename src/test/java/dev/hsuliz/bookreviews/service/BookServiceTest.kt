@@ -1,8 +1,8 @@
 package dev.hsuliz.bookreviews.service
 
-import dev.hsuliz.bookreviews.util.component.BookRequester
 import dev.hsuliz.bookreviews.model.Book
 import dev.hsuliz.bookreviews.repository.BookRepository
+import dev.hsuliz.bookreviews.util.component.BookRequester
 import dev.hsuliz.bookreviews.util.exception.BookNotFoundException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
@@ -21,17 +21,19 @@ import reactor.test.StepVerifier
 public class BookServiceTest {
     @InjectMocks
     lateinit var bookService: BookService
+
     @Mock
-    lateinit var mockBookRepository: BookRepository
+    lateinit var bookRepositoryMock: BookRepository
+
     @Mock
-    lateinit var mockBookRequester: BookRequester
+    lateinit var bookRequesterMock: BookRequester
 
     @Nested
     inner class FindByIdTest {
         @Test
         fun `should find and return given book`() {
             val expected = Book("1", "Dave", "How to", "228", "12", "123")
-            `when`(mockBookRepository.findById(expected.id)).thenReturn(Mono.just(expected))
+            `when`(bookRepositoryMock.findById(expected.id)).thenReturn(Mono.just(expected))
             StepVerifier
                 .create(bookService.findBookById(expected.id))
                 .expectNext(expected)
@@ -41,7 +43,7 @@ public class BookServiceTest {
 
         @Test
         fun `shouldn throw exception when book not found`() {
-            `when`(mockBookRepository.findById(anyString())).thenReturn(Mono.empty())
+            `when`(bookRepositoryMock.findById(anyString())).thenReturn(Mono.empty())
             StepVerifier
                 .create(bookService.findBookById("7777"))
                 .expectError(BookNotFoundException::class.java)
@@ -58,7 +60,7 @@ public class BookServiceTest {
                 Book("2", "Daniel", "Why to", "9234", "123", "123"),
                 Book("3", "Danny", "Should to", "6531", "123", "123")
             )
-            `when`(mockBookRepository.findAll()).thenReturn(Flux.fromIterable(givenBooks))
+            `when`(bookRepositoryMock.findAll()).thenReturn(Flux.fromIterable(givenBooks))
             StepVerifier
                 .create(bookService.findAllBooks())
                 .also { verifier ->
@@ -70,7 +72,7 @@ public class BookServiceTest {
         @Test
         fun `should return empty list when invoked`() {
             val givenEmptyBookList = listOf<Book>()
-            `when`(mockBookRepository.findAll()).thenReturn(Flux.fromIterable(givenEmptyBookList))
+            `when`(bookRepositoryMock.findAll()).thenReturn(Flux.fromIterable(givenEmptyBookList))
             StepVerifier
                 .create(bookService.findAllBooks())
                 .verifyComplete()
