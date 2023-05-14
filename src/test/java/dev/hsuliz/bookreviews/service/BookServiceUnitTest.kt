@@ -2,7 +2,6 @@ package dev.hsuliz.bookreviews.service
 
 import dev.hsuliz.bookreviews.model.Book
 import dev.hsuliz.bookreviews.repository.BookRepository
-import dev.hsuliz.bookreviews.util.component.BookRequester
 import dev.hsuliz.bookreviews.util.exception.BookNotFoundException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
@@ -21,9 +20,6 @@ import reactor.test.StepVerifier
 class BookServiceUnitTest {
     @Mock
     lateinit var bookRepositoryMock: BookRepository
-
-    @Mock
-    lateinit var bookRequesterMock: BookRequester
 
     @InjectMocks
     lateinit var bookService: BookService
@@ -46,7 +42,7 @@ class BookServiceUnitTest {
             `when`(bookRepositoryMock.findById(anyString())).thenReturn(Mono.empty())
 
             StepVerifier
-                .create(bookService.findBookById("7777"))
+                .create(bookService.findBookById(anyString()))
                 .expectError(BookNotFoundException::class.java)
                 .verify()
         }
@@ -73,8 +69,7 @@ class BookServiceUnitTest {
 
         @Test
         fun `should return empty list when invoked`() {
-            val givenEmptyBookList = listOf<Book>()
-            `when`(bookRepositoryMock.findAll()).thenReturn(Flux.fromIterable(givenEmptyBookList))
+            `when`(bookRepositoryMock.findAll()).thenReturn(Flux.empty())
 
             StepVerifier
                 .create(bookService.findAllBooks())

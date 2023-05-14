@@ -45,7 +45,7 @@ class BookRequesterIntegrationTest {
     }
 
     @Test
-    fun `should return book when status 200`() {
+    fun `should return mapped book when status 200`() {
         val book = BookResponse(
             "9463666656",
             "Kees Vuik, Fred Vermolen, Martin van Gijzen",
@@ -57,11 +57,7 @@ class BookRequesterIntegrationTest {
             MockResponse()
                 .addHeader("Content-Type", "application/json")
                 .setResponseCode(200)
-                .setBody(
-                    ObjectMapper().writeValueAsString(
-                        book
-                    )
-                )
+                .setBody(ObjectMapper().writeValueAsString(book))
         )
 
         StepVerifier
