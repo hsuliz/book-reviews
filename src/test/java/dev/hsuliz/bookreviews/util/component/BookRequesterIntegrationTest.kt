@@ -1,7 +1,6 @@
 package dev.hsuliz.bookreviews.util.component
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import dev.hsuliz.bookreviews.model.Book
 import dev.hsuliz.bookreviews.util.dto.BookResponse
 import dev.hsuliz.bookreviews.util.mapper.BookMapper
 import okhttp3.mockwebserver.MockResponse
@@ -29,13 +28,13 @@ class BookRequesterIntegrationTest {
     @BeforeEach
     fun setup() {
         mockWebServer = MockWebServer()
-        mockWebServer.start(8080)
+        mockWebServer.start()
 
         bookRequester = BookRequester(
             bookMapper,
             WebClient
                 .builder()
-                .baseUrl("http://${mockWebServer.hostName}:8080")
+                .baseUrl("http://${mockWebServer.hostName}:${mockWebServer.port}")
                 .build()
         )
     }
@@ -47,33 +46,27 @@ class BookRequesterIntegrationTest {
 
     @Test
     fun `should return book when status 200`() {
+        val book = BookResponse(
+            "9463666656",
+            "Kees Vuik, Fred Vermolen, Martin van Gijzen",
+            "Numerical Methods for Ordinary Differential Equations",
+            "2023",
+            "https://www.dbooks.org/img/books/9463666656s.jpg"
+        )
         mockWebServer.enqueue(
             MockResponse()
                 .addHeader("Content-Type", "application/json")
                 .setResponseCode(200)
                 .setBody(
                     ObjectMapper().writeValueAsString(
-                        BookResponse(
-                            "9463666656",
-                            "Kees Vuik, Fred Vermolen, Martin van Gijzen",
-                            "Numerical Methods for Ordinary Differential Equations",
-                            "2023",
-                            "https://www.dbooks.org/img/books/9463666656s.jpg"
-                        )
+                        book
                     )
                 )
         )
 
-
         StepVerifier
             .create(bookRequester.findById(anyString()))
-            .expectNext(Book(
-                "9463666656",
-                "Kees Vuik, Fred Vermolen, Martin van Gijzen",
-                "Numerical Methods for Ordinary Differential Equations",
-                "2023",
-                "https://www.dbooks.org/img/books/9463666656s.jpg"
-            ))
+            .expectNext(bookMapper.responseToModel(book))
             .verifyComplete()
     }
 

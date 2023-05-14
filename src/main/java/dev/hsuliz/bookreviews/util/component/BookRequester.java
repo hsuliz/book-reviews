@@ -24,10 +24,7 @@ public class BookRequester {
                 .retrieve()
                 .onStatus(
                         HttpStatus.NOT_FOUND::equals,
-                        response -> {
-                            System.out.println("ERROR!!!!!!");
-                            return Mono.error(new BookNotFoundException(id));
-                        }
+                        response -> Mono.error(new BookNotFoundException(id))
                 )
                 .bodyToMono(BookResponse.class)
                 .map(bookMapper::responseToModel);
