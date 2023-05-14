@@ -74,7 +74,6 @@ class BookRequesterIntegrationTest {
                 "2023",
                 "https://www.dbooks.org/img/books/9463666656s.jpg"
             ))
-            .expectNextCount(1)
             .verifyComplete()
     }
 
@@ -90,5 +89,3 @@ class BookRequesterIntegrationTest {
             .verifyError()
     }
 }
-Book(id=null, externalId=9463666656, title=Kees Vuik, Fred Vermolen, Martin van Gijzen, author=Numerical Methods for Ordinary Differential Equations, year=2023
-Book(id=null, externalId=9463666656, title=Numerical Methods for Ordinary Differential Equations, author=Kees Vuik, Fred Vermolen, Martin van Gijzen, year=2023,
