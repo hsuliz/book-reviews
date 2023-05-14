@@ -18,15 +18,15 @@ import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 
 @ExtendWith(MockitoExtension::class)
-public class BookServiceTest {
-    @InjectMocks
-    lateinit var bookService: BookService
-
+class BookServiceUnitTest {
     @Mock
     lateinit var bookRepositoryMock: BookRepository
 
     @Mock
     lateinit var bookRequesterMock: BookRequester
+
+    @InjectMocks
+    lateinit var bookService: BookService
 
     @Nested
     inner class FindByIdTest {
@@ -34,16 +34,17 @@ public class BookServiceTest {
         fun `should find and return given book`() {
             val expected = Book("1", "Dave", "How to", "228", "12", "123")
             `when`(bookRepositoryMock.findById(expected.id)).thenReturn(Mono.just(expected))
+
             StepVerifier
                 .create(bookService.findBookById(expected.id))
                 .expectNext(expected)
-                .expectComplete()
-                .verify()
+                .verifyComplete()
         }
 
         @Test
         fun `shouldn throw exception when book not found`() {
             `when`(bookRepositoryMock.findById(anyString())).thenReturn(Mono.empty())
+
             StepVerifier
                 .create(bookService.findBookById("7777"))
                 .expectError(BookNotFoundException::class.java)
@@ -61,6 +62,7 @@ public class BookServiceTest {
                 Book("3", "Danny", "Should to", "6531", "123", "123")
             )
             `when`(bookRepositoryMock.findAll()).thenReturn(Flux.fromIterable(givenBooks))
+
             StepVerifier
                 .create(bookService.findAllBooks())
                 .also { verifier ->
@@ -73,8 +75,10 @@ public class BookServiceTest {
         fun `should return empty list when invoked`() {
             val givenEmptyBookList = listOf<Book>()
             `when`(bookRepositoryMock.findAll()).thenReturn(Flux.fromIterable(givenEmptyBookList))
+
             StepVerifier
                 .create(bookService.findAllBooks())
+                .expectNextCount(0)
                 .verifyComplete()
         }
     }
