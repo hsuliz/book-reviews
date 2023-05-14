@@ -1,5 +1,6 @@
 package dev.hsuliz.bookreviews.service;
 
+import dev.hsuliz.bookreviews.util.component.BookRequester;
 import dev.hsuliz.bookreviews.model.Book;
 import dev.hsuliz.bookreviews.repository.BookRepository;
 import dev.hsuliz.bookreviews.util.exception.BookNotFoundException;
@@ -15,7 +16,8 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class BookService {
     private final BookRepository bookRepository;
-    private final BookRequestService bookRequestService;
+
+    private final BookRequester bookRequester;
 
     public Mono<Book> findBookById(String id) {
         return bookRepository
@@ -28,7 +30,7 @@ public class BookService {
     }
 
     public Mono<Book> createBookFromAPI(String id) {
-        return bookRequestService
+        return bookRequester
                 .findById(id)
                 .flatMap(bookRepository::save);
     }

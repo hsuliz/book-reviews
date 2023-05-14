@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class BookController {
     private final BookMapper bookMapper;
+
     private final BookService bookService;
 
     @GetMapping("/{id}")

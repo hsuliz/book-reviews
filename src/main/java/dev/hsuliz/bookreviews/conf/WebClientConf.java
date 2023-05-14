@@ -6,7 +6,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class WebClientConf {
-
     @Bean
     public WebClient findBookWebClient() {
         return WebClient

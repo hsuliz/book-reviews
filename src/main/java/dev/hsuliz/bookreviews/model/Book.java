@@ -1,6 +1,5 @@
 package dev.hsuliz.bookreviews.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,14 +14,15 @@ public class Book {
     @Id
     private String id;
     private String externalId;
-    private String title;
     private String author;
+    private String title;
     private String year;
     private String image;
-    public Book(String externalId, String title, String author, String year, String image) {
+
+    public Book(String externalId, String author, String title, String year, String image) {
         this.externalId = externalId;
-        this.title = title;
         this.author = author;
+        this.title = title;
         this.year = year;
         this.image = image;
     }

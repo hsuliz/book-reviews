@@ -11,8 +11,8 @@ public class BookMapper implements Mapper<BookResponse, Book, BookDTO> {
     public Book responseToModel(BookResponse bookResponse) {
         return new Book(
                 bookResponse.id(),
-                bookResponse.title(),
                 bookResponse.authors(),
+                bookResponse.title(),
                 bookResponse.year(),
                 bookResponse.image()
         );
@@ -22,8 +22,8 @@ public class BookMapper implements Mapper<BookResponse, Book, BookDTO> {
     public BookDTO modelToDTO(Book book) {
         return new BookDTO(
                 book.getId(),
-                book.getTitle(),
                 book.getAuthor(),
+                book.getTitle(),
                 book.getYear(),
                 book.getImage()
         );
