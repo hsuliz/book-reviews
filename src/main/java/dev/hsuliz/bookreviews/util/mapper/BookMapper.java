@@ -21,11 +21,11 @@ public class BookMapper implements Mapper<BookResponse, Book, BookDTO> {
     @Override
     public BookDTO modelToDTO(Book book) {
         return new BookDTO(
-                book.getId(),
-                book.getAuthor(),
-                book.getTitle(),
-                book.getYear(),
-                book.getImage()
+                book.id(),
+                book.author(),
+                book.title(),
+                book.year(),
+                book.image()
         );
     }
 }

@@ -26,7 +26,7 @@ public class BookReviewsApplication {
         return args -> {
             Review review = new Review(5, "Great book!");
             var x = reviewRepository.save(review).block();
-            System.out.println(reviewRepository.findById(x.getId()).block());
+            System.out.println(reviewRepository.findById(x.id()).block());
         };
     }
 }
