@@ -1,7 +1,7 @@
 package dev.hsuliz.bookreviews.util.component;
 
 import dev.hsuliz.bookreviews.model.Book;
-import dev.hsuliz.bookreviews.util.dto.BookResponse;
+import dev.hsuliz.bookreviews.dto.BookRequesterResponse;
 import dev.hsuliz.bookreviews.util.exception.BookNotFoundException;
 import dev.hsuliz.bookreviews.util.mapper.BookMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class BookRequester {
                         HttpStatus.NOT_FOUND::equals,
                         response -> Mono.error(new BookNotFoundException(id))
                 )
-                .bodyToMono(BookResponse.class)
+                .bodyToMono(BookRequesterResponse.class)
                 .map(bookMapper::responseToModel);
     }
 }

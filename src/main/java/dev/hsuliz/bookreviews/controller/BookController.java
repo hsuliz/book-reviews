@@ -1,8 +1,7 @@
 package dev.hsuliz.bookreviews.controller;
 
-import dev.hsuliz.bookreviews.model.Book;
 import dev.hsuliz.bookreviews.service.BookService;
-import dev.hsuliz.bookreviews.util.dto.BookDTO;
+import dev.hsuliz.bookreviews.dto.BookResponse;
 import dev.hsuliz.bookreviews.util.exception.BookNotFoundException;
 import dev.hsuliz.bookreviews.util.mapper.BookMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,7 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<BookDTO>> getBookById(@PathVariable String id) {
+    public Mono<ResponseEntity<BookResponse>> getBookById(@PathVariable String id) {
         return bookService
                 .findBookById(id)
                 .map(bookMapper::modelToDTO)
@@ -31,14 +30,14 @@ public class BookController {
     }
 
     @GetMapping
-    public Flux<BookDTO> findAllBooks() {
+    public Flux<BookResponse> findAllBooks() {
         return bookService
                 .findAllBooks()
                 .map(bookMapper::modelToDTO);
     }
 
     @PostMapping("/{id}")
-    public Mono<ResponseEntity<BookDTO>> createBookFromAPI(@PathVariable String id) {
+    public Mono<ResponseEntity<BookResponse>> createBookFromAPI(@PathVariable String id) {
         return bookService
                 .createBookFromAPI(id)
                 .map(bookMapper::modelToDTO)
