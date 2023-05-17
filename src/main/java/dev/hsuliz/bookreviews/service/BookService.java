@@ -1,8 +1,8 @@
 package dev.hsuliz.bookreviews.service;
 
-import dev.hsuliz.bookreviews.util.component.BookRequester;
 import dev.hsuliz.bookreviews.model.Book;
 import dev.hsuliz.bookreviews.repository.BookRepository;
+import dev.hsuliz.bookreviews.util.component.BookRequester;
 import dev.hsuliz.bookreviews.util.exception.BookNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
