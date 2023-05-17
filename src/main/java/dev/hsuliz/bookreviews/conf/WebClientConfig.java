@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
-public class WebClientConf {
+public class WebClientConfig {
     @Bean
     public WebClient findBookWebClient() {
         return WebClient

@@ -1,8 +1,8 @@
 package dev.hsuliz.bookreviews.util.mapper;
 
 
-public interface Mapper<RESPONSE, MODEL, DTO> {
-    public MODEL responseToModel(RESPONSE response);
+public interface Mapper<REQUEST, MODEL, RESPONSE> {
+    MODEL responseToModel(REQUEST response);
 
-    public DTO modelToDTO(MODEL model);
+    RESPONSE modelToResponse(MODEL model);
 }

@@ -1,29 +1,16 @@
 package dev.hsuliz.bookreviews.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "books")
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-public class Book {
-    @Id
-    private String id;
-    private String externalId;
-    private String author;
-    private String title;
-    private String year;
-    private String image;
+import java.util.Collection;
+import java.util.TreeSet;
 
+@Document(collection = "book")
+public record Book(@Id String id, String externalId, String author, String title, String year, String image,
+                   Collection<Review> reviews) {
     public Book(String externalId, String author, String title, String year, String image) {
-        this.externalId = externalId;
-        this.author = author;
-        this.title = title;
-        this.year = year;
-        this.image = image;
+        this(null, externalId, author, title, year, image, new TreeSet<>());
     }
 }
+

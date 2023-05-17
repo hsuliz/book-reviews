@@ -1,4 +1,4 @@
-package dev.hsuliz.bookreviews.util.dto;
+package dev.hsuliz.bookreviews.dto;
 
 public record MessageResponse(
         String message
