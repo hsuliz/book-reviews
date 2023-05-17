@@ -4,6 +4,7 @@ import dev.hsuliz.bookreviews.dto.BookResponse;
 import dev.hsuliz.bookreviews.service.BookService;
 import dev.hsuliz.bookreviews.util.mapper.BookMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -31,6 +32,7 @@ public class BookController {
     }
 
     @PostMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<BookResponse> createBookFromAPI(@PathVariable String id) {
         return bookService
                 .saveBookFromAPI(id)
