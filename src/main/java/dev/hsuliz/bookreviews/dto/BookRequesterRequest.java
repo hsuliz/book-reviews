@@ -1,6 +1,6 @@
 package dev.hsuliz.bookreviews.dto;
 
-public record BookRequesterResponse(
+public record BookRequesterRequest(
         String id,
         String authors,
         String title,

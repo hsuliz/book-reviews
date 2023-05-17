@@ -2,30 +2,31 @@ package dev.hsuliz.bookreviews.util.mapper;
 
 import dev.hsuliz.bookreviews.model.Book;
 import dev.hsuliz.bookreviews.dto.BookResponse;
-import dev.hsuliz.bookreviews.dto.BookRequesterResponse;
+import dev.hsuliz.bookreviews.dto.BookRequesterRequest;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BookMapper implements Mapper<BookRequesterResponse, Book, BookResponse> {
+public class BookMapper implements Mapper<BookRequesterRequest, Book, BookResponse> {
     @Override
-    public Book responseToModel(BookRequesterResponse bookRequesterResponse) {
+    public Book responseToModel(BookRequesterRequest bookRequesterRequest) {
         return new Book(
-                bookRequesterResponse.id(),
-                bookRequesterResponse.authors(),
-                bookRequesterResponse.title(),
-                bookRequesterResponse.year(),
-                bookRequesterResponse.image()
+                bookRequesterRequest.id(),
+                bookRequesterRequest.authors(),
+                bookRequesterRequest.title(),
+                bookRequesterRequest.year(),
+                bookRequesterRequest.image()
         );
     }
 
     @Override
-    public BookResponse modelToDTO(Book book) {
+    public BookResponse modelToResponse(Book book) {
         return new BookResponse(
                 book.id(),
                 book.author(),
                 book.title(),
                 book.year(),
-                book.image()
+                book.image(),
+                book.reviews()
         );
     }
 }

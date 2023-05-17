@@ -1,7 +1,7 @@
 package dev.hsuliz.bookreviews.util.component
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import dev.hsuliz.bookreviews.dto.BookRequesterResponse
+import dev.hsuliz.bookreviews.dto.BookRequesterRequest
 import dev.hsuliz.bookreviews.util.mapper.BookMapper
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -46,7 +46,7 @@ class BookRequesterIntegrationTest {
 
     @Test
     fun `should return mapped book when status 200`() {
-        val book = BookRequesterResponse(
+        val book = BookRequesterRequest(
             "9463666656",
             "Kees Vuik, Fred Vermolen, Martin van Gijzen",
             "Numerical Methods for Ordinary Differential Equations",
