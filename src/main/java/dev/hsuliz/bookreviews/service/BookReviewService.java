@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.TreeSet;
+// #TODO Need to add review service
 
 @Service
 @RequiredArgsConstructor
@@ -16,7 +16,8 @@ public class BookReviewService {
     private final BookService bookService;
 
     public Mono<Void> addReviewForGivenBook(String bookId, Review review) {
-        return bookService.findBookById(bookId)
+        return bookService
+                .findBookById(bookId)
                 .flatMap(foundBook -> reviewRepository.save(review)
                         .flatMap(savedReview -> {
                             foundBook.reviews().add(savedReview);
