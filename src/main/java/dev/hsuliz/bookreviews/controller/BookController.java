@@ -2,7 +2,7 @@ package dev.hsuliz.bookreviews.controller;
 
 import dev.hsuliz.bookreviews.dto.BookResponse;
 import dev.hsuliz.bookreviews.service.BookService;
-import dev.hsuliz.bookreviews.util.mapper.BookMapper;
+import dev.hsuliz.bookreviews.mapper.BookMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

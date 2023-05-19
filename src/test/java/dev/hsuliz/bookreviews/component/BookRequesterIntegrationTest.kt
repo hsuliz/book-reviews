@@ -1,8 +1,8 @@
-package dev.hsuliz.bookreviews.util.component
+package dev.hsuliz.bookreviews.component
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import dev.hsuliz.bookreviews.dto.BookRequesterRequest
-import dev.hsuliz.bookreviews.util.mapper.BookMapper
+import dev.hsuliz.bookreviews.mapper.BookMapper
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.jupiter.api.AfterEach

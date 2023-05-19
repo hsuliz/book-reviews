@@ -1,4 +1,4 @@
-package dev.hsuliz.bookreviews.util.mapper;
+package dev.hsuliz.bookreviews.mapper;
 
 import dev.hsuliz.bookreviews.dto.BookRequesterRequest;
 import dev.hsuliz.bookreviews.dto.BookResponse;
