@@ -59,7 +59,7 @@ class BookRequesterIntegrationTest {
                 .setBody(ObjectMapper().writeValueAsString(book))
         )
         StepVerifier
-            .create(bookRequester.findById(anyString()))
+            .create(bookRequester.findById(book.id))
             .expectNext(bookMapper.responseToModel(book))
             .verifyComplete()
     }
@@ -71,7 +71,7 @@ class BookRequesterIntegrationTest {
                 .setResponseCode(404)
         )
         StepVerifier
-            .create(bookRequester.findById(anyString()))
+            .create(bookRequester.findById("777"))
             .verifyError()
     }
 }

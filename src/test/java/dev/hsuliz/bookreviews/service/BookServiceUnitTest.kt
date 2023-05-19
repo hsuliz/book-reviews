@@ -37,10 +37,10 @@ class BookServiceUnitTest {
         }
 
         @Test
-        fun `shouldn throw exception when book not found`() {
+        fun `should throw exception when book not found`() {
             `when`(bookRepositoryMock.findById(anyString())).thenReturn(Mono.empty())
             StepVerifier
-                .create(bookService.findBookById(anyString()))
+                .create(bookService.findBookById("anyString()"))
                 .expectError(BookNotFoundException::class.java)
                 .verify()
         }
