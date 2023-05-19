@@ -1,7 +1,6 @@
 package dev.hsuliz.bookreviews.controller;
 
 import dev.hsuliz.bookreviews.dto.ReviewDTO;
-import dev.hsuliz.bookreviews.model.Review;
 import dev.hsuliz.bookreviews.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
