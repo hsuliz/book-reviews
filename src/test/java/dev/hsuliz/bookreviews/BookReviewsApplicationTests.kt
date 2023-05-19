@@ -9,5 +9,4 @@ class BookReviewsApplicationTests {
     fun contextLoads() {
     }
 
-
 }
