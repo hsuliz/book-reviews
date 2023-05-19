@@ -29,7 +29,6 @@ class BookRequesterIntegrationTest {
     fun setup() {
         mockWebServer = MockWebServer()
         mockWebServer.start()
-
         bookRequester = BookRequester(
             bookMapper,
             WebClient
@@ -59,7 +58,6 @@ class BookRequesterIntegrationTest {
                 .setResponseCode(200)
                 .setBody(ObjectMapper().writeValueAsString(book))
         )
-
         StepVerifier
             .create(bookRequester.findById(anyString()))
             .expectNext(bookMapper.responseToModel(book))
@@ -72,7 +70,6 @@ class BookRequesterIntegrationTest {
             MockResponse()
                 .setResponseCode(404)
         )
-
         StepVerifier
             .create(bookRequester.findById(anyString()))
             .verifyError()
