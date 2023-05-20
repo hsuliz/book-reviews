@@ -1,10 +1,6 @@
 package dev.hsuliz.bookreviews.service
 
-import dev.hsuliz.bookreviews.model.Review
 import dev.hsuliz.bookreviews.repository.ReviewRepository
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -34,7 +30,7 @@ class ReviewServiceIntegrationTest {
     }
 
     @Test
-    fun `save book and find by id`() {
+    fun `save book, add review, find by id`() {
 
     }
 }

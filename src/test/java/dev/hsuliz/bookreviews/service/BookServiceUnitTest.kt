@@ -1,8 +1,8 @@
 package dev.hsuliz.bookreviews.service
 
+import dev.hsuliz.bookreviews.exception.BookNotFoundException
 import dev.hsuliz.bookreviews.model.Book
 import dev.hsuliz.bookreviews.repository.BookRepository
-import dev.hsuliz.bookreviews.exception.BookNotFoundException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
