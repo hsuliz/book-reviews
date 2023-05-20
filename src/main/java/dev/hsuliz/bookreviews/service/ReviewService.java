@@ -19,7 +19,7 @@ public class ReviewService {
                 .findBookById(reviewDTO.bookId())
                 .flatMap(foundBook -> reviewRepository.save(reviewDTO.review())
                         .flatMap(savedReview -> {
-                            foundBook.reviews().add(savedReview);
+                            foundBook.getReviews().add(savedReview);
                             return bookService.saveBook(foundBook).then();
                         }))
                 .then();

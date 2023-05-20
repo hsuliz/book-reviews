@@ -21,12 +21,12 @@ public class BookMapper implements Mapper<BookRequesterRequest, Book, BookRespon
     @Override
     public BookResponse modelToResponse(Book book) {
         return new BookResponse(
-                book.id(),
-                book.author(),
-                book.title(),
-                book.year(),
-                book.image(),
-                book.reviews()
+                book.getId(),
+                book.getAuthor(),
+                book.getTitle(),
+                book.getYear(),
+                book.getImage(),
+                book.getReviews()
         );
     }
 }

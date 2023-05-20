@@ -28,7 +28,7 @@ class BookServiceUnitTest {
     inner class FindByIdTest {
         @Test
         fun `should find and return given book`() {
-            val expected = Book("1", "Dave", "How to", "228", "12", "123", listOf())
+            val expected = Book("Dave", "How to", "228", "12", "123")
             `when`(bookRepositoryMock.findById(expected.id)).thenReturn(Mono.just(expected))
             StepVerifier
                 .create(bookService.findBookById(expected.id))
@@ -51,9 +51,9 @@ class BookServiceUnitTest {
         @Test
         fun `should return list of books when invoked`() {
             val givenBooks = listOf(
-                Book("1", "Dave", "How to", "228", "123", "123", listOf()),
-                Book("2", "Daniel", "Why to", "9234", "123", "123", listOf()),
-                Book("3", "Danny", "Should to", "6531", "123", "123", listOf())
+                Book("Dave", "How to", "228", "123", "123"),
+                Book("Daniel", "Why to", "9234", "123", "123"),
+                Book("Danny", "Should to", "6531", "123", "123")
             )
             `when`(bookRepositoryMock.findAll()).thenReturn(Flux.fromIterable(givenBooks))
             StepVerifier
