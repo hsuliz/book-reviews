@@ -2,7 +2,7 @@ package dev.hsuliz.bookreviews.service
 
 import dev.hsuliz.bookreviews.exception.BookNotFoundException
 import dev.hsuliz.bookreviews.model.Book
-import dev.hsuliz.bookreviews.repository.BookRepository
+import dev.hsuliz.bookreviews.repository.TestBookRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -19,7 +19,7 @@ import reactor.test.StepVerifier
 @ExtendWith(MockitoExtension::class)
 class BookServiceUnitTest {
     @Mock
-    lateinit var bookRepositoryMock: BookRepository
+    lateinit var bookRepositoryMock: TestBookRepository
 
     @InjectMocks
     lateinit var bookService: BookService

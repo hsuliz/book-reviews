@@ -1,6 +1,6 @@
 package dev.hsuliz.bookreviews.controller;
 
-import dev.hsuliz.bookreviews.dto.ReviewDTO;
+import dev.hsuliz.bookreviews.dto.ReviewRequest;
 import dev.hsuliz.bookreviews.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,9 +15,9 @@ public class ReviewController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Void> createReviewForGivenBook(@RequestBody ReviewDTO reviewDTO) {
+    public Mono<Void> createReviewForGivenBook(@RequestBody ReviewRequest reviewDTO) {
         return reviewService
-                .addReviewForGivenBook(reviewDTO)
+                .addReviewForGivenBook(reviewDTO.review(), reviewDTO.bookId())
                 .then();
     }
 }

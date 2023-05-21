@@ -1,6 +1,6 @@
 package dev.hsuliz.bookreviews.service;
 
-import dev.hsuliz.bookreviews.dto.ReviewDTO;
+import dev.hsuliz.bookreviews.model.Review;
 import dev.hsuliz.bookreviews.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,10 @@ public class ReviewService {
 
     private final BookService bookService;
 
-    public Mono<Void> addReviewForGivenBook(ReviewDTO reviewDTO) {
+    public Mono<Void> addReviewForGivenBook(Review review, String bookId) {
         return bookService
-                .findBookById(reviewDTO.bookId())
-                .flatMap(foundBook -> reviewRepository.save(reviewDTO.review())
+                .findBookById(bookId)
+                .flatMap(foundBook -> reviewRepository.save(review)
                         .flatMap(savedReview -> {
                             foundBook.getReviews().add(savedReview);
                             return bookService.saveBook(foundBook).then();

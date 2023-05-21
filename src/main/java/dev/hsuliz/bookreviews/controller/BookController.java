@@ -31,11 +31,11 @@ public class BookController {
                 .map(bookMapper::modelToResponse);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<BookResponse> createBookFromAPI(@PathVariable String id) {
+    public Mono<Void> createBookFromAPI(@RequestBody String id) {
         return bookService
                 .saveBookFromAPI(id)
-                .map(bookMapper::modelToResponse);
+                .then();
     }
 }
