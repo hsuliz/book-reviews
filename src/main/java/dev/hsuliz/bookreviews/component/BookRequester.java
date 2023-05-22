@@ -1,9 +1,9 @@
-package dev.hsuliz.bookreviews.util.component;
+package dev.hsuliz.bookreviews.component;
 
 import dev.hsuliz.bookreviews.dto.BookRequesterRequest;
 import dev.hsuliz.bookreviews.model.Book;
-import dev.hsuliz.bookreviews.util.exception.BookNotFoundException;
-import dev.hsuliz.bookreviews.util.mapper.BookMapper;
+import dev.hsuliz.bookreviews.exception.BookNotFoundException;
+import dev.hsuliz.bookreviews.mapper.BookMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package dev.hsuliz.bookreviews.util.mapper;
+package dev.hsuliz.bookreviews.mapper;
 
 
 public interface Mapper<REQUEST, MODEL, RESPONSE> {
