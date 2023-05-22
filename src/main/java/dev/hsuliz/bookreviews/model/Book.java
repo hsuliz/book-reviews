@@ -7,8 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Objects;
-import java.util.TreeSet;
 
 @Document(collection = "book")
 @Data
@@ -30,10 +28,5 @@ public final class Book {
         this.year = year;
         this.image = image;
         this.reviews = new ArrayList<>();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, externalId, author, title, year, image, reviews);
     }
 }

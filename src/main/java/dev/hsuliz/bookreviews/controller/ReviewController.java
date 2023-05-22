@@ -15,9 +15,9 @@ public class ReviewController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Void> createReviewForGivenBook(@RequestBody ReviewRequest reviewDTO) {
+    public Mono<Void> createReviewForGivenBook(@RequestBody ReviewRequest reviewRequest) {
         return reviewService
-                .addReviewForGivenBook(reviewDTO.review(), reviewDTO.bookId())
+                .addReviewForGivenBook(reviewRequest.review(), reviewRequest.bookId())
                 .then();
     }
 }

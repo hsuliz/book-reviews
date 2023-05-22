@@ -68,6 +68,5 @@ class ServiceIntegrationTest {
             .uri("/book/${givenBook!!.id}")
             .exchange()
             .expectStatus().is2xxSuccessful
-
     }
 }
