@@ -2,8 +2,6 @@ package dev.hsuliz.bookreviews.controller;
 
 import dev.hsuliz.bookreviews.dto.SingleMessageResponse;
 import dev.hsuliz.bookreviews.dto.UserLoginRequest;
-import dev.hsuliz.bookreviews.exception.UserAlreadyExistException;
-import dev.hsuliz.bookreviews.exception.UserNotFoundException;
 import dev.hsuliz.bookreviews.model.User;
 import dev.hsuliz.bookreviews.service.TokenService;
 import dev.hsuliz.bookreviews.service.UserService;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 @RestController
 @RequestMapping("/auth")

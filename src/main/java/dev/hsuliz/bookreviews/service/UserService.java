@@ -18,13 +18,10 @@ public class UserService {
                 .flatMap(it -> Mono.error(UserAlreadyExistException::new))
                 .onErrorResume(UserNotFoundException.class, it -> userRepository.save(user))
                 .then();
-
     }
 
     public Mono<User> findUserByUsername(User user) {
-        return userRepository
-                .findUserByUsername(user.username())
-                .switchIfEmpty(Mono.error(UserNotFoundException::new));
+        return findUserByUsername(user.username());
     }
 
     public Mono<User> findUserByUsername(String username) {
