@@ -18,7 +18,7 @@ import java.time.temporal.ChronoUnit;
 public class TokenService {
     private final JwtEncoder encoder;
 
-    public Mono<String> generateToken(Authentication authentication) {
+    public String generateToken(Authentication authentication) {
         Instant now = Instant.now();
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
@@ -27,6 +27,6 @@ public class TokenService {
                 .subject(authentication.getName())
                 .build();
         var encoderParameters = JwtEncoderParameters.from(JwsHeader.with(MacAlgorithm.HS512).build(), claims);
-        return Mono.just(this.encoder.encode(encoderParameters).getTokenValue());
+        return encoder.encode(encoderParameters).getTokenValue();
     }
 }

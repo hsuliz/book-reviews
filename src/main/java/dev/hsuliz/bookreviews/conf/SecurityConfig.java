@@ -44,7 +44,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public ReactiveJwtDecoder reactiveJwtDecoder() {
+    ReactiveJwtDecoder reactiveJwtDecoder() {
         byte[] bytes = jwtKey.getBytes();
         SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length, "RSA");
         return NimbusReactiveJwtDecoder.withSecretKey(originalKey).macAlgorithm(MacAlgorithm.HS512).build();

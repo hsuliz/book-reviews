@@ -29,8 +29,8 @@ public class AuthController {
 
     @PostMapping("/login")
     public Mono<SingleMessageResponse> login(@RequestBody UserLoginRequest request) {
-        return tokenService
-                .generateToken(new UsernamePasswordAuthenticationToken(request.username(), request.password()))
+        return Mono
+                .just(tokenService.generateToken(new UsernamePasswordAuthenticationToken(request.username(), request.password())))
                 .map(it -> new SingleMessageResponse("token", it));
     }
 }
