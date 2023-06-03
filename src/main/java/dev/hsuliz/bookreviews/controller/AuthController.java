@@ -1,6 +1,6 @@
 package dev.hsuliz.bookreviews.controller;
 
-import dev.hsuliz.bookreviews.dto.SingleMessageResponse;
+import dev.hsuliz.bookreviews.dto.TokenResponse;
 import dev.hsuliz.bookreviews.dto.UserLoginRequest;
 import dev.hsuliz.bookreviews.model.User;
 import dev.hsuliz.bookreviews.service.TokenService;
@@ -28,9 +28,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public Mono<SingleMessageResponse> login(@RequestBody UserLoginRequest request) {
+    public Mono<TokenResponse> login(@RequestBody UserLoginRequest request) {
         return Mono
                 .just(tokenService.generateToken(new UsernamePasswordAuthenticationToken(request.username(), request.password())))
-                .map(it -> new SingleMessageResponse("token", it));
+                .map(TokenResponse::new);
     }
 }

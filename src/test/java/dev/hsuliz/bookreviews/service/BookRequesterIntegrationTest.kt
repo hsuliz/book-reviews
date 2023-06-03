@@ -1,4 +1,4 @@
-package dev.hsuliz.bookreviews.component
+package dev.hsuliz.bookreviews.service
 
 import dev.hsuliz.bookreviews.mapper.BookMapper
 import dev.hsuliz.bookreviews.service.BookRequester

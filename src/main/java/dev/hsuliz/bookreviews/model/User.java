@@ -1,5 +1,7 @@
 package dev.hsuliz.bookreviews.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,16 +12,18 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Document
+@Data
+@NoArgsConstructor
 public final class User implements UserDetails {
     @Serial
     private static final long serialVersionUID = 0L;
 
     @Id
-    private final String id;
+    private String id;
 
-    private final String username;
+    private String username;
 
-    private final String password;
+    private String password;
 
     public User(String id, String username, String password) {
         this.id = id;
