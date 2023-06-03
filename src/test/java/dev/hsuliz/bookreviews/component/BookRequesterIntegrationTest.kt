@@ -1,6 +1,7 @@
 package dev.hsuliz.bookreviews.component
 
 import dev.hsuliz.bookreviews.mapper.BookMapper
+import dev.hsuliz.bookreviews.service.BookRequester
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.jupiter.api.AfterEach
